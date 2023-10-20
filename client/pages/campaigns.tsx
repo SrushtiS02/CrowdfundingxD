@@ -33,6 +33,7 @@ const useCampaigns = () => {
   const [campaigns, setCampaigns] = useState<ICampaign[]>([]);
 
   useEffect(() => {
+    // if (eth === null) 
     getCampaigns();
   }, [eth]);
 
@@ -40,6 +41,7 @@ const useCampaigns = () => {
     setFetching(true);
     const db = new DatabaseService();
     const { data } = await db.superbase.from("campaigns").select("*");
+    // console.log(data)
     if (data) {
       const serialized = await Promise.all(
         data.map(async (d) => {
